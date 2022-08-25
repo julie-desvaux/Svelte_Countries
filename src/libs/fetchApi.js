@@ -5,6 +5,13 @@ const getCountries = async () => {
 	return response;
 };
 
+const getCountriesByRegion = async (region) => {
+	const res = await fetch(`https://restcountries.com/v3.1/region/${region}`);
+	const response = await res.json();
+
+	return response;
+};
+
 const getACountry = async (name) => {
 	const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
 	const response = await res.json();
@@ -12,4 +19,4 @@ const getACountry = async (name) => {
 	return response;
 };
 
-export { getCountries, getACountry };
+export { getCountries, getACountry, getCountriesByRegion };
