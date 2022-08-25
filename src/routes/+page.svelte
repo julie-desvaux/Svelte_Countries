@@ -13,6 +13,9 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Countries App</title>
+</svelte:head>
 
     <h1 class="text-center mb-10 text-3xl font-bold">Countries</h1>
     <div class="cards">

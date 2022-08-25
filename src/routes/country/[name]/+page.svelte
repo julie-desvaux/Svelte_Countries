@@ -4,6 +4,7 @@
   import {getACountry} from "../../../libs/fetchApi"
 
   const name = $page.params.name
+  export const title = name.charAt(0).toUpperCase()+name.substr(1)
 
   let country
 
@@ -14,63 +15,47 @@
 
 </script>
 
-<main>
+<svelte:head>
+	<title>{title} - Countries App</title>
+</svelte:head>
+
+
   {#if country}
-    <h1>{country[0].name.common}</h1>
-    <div class="container">
-      <div class="flag">
-        <img src={country[0].flags.svg} alt={country[0].name.common}>
+    <h1 class="text-center mb-10 text-3xl font-bold">{country[0].name.common}</h1>
+    <div class="flex flex-wrap">
+      <div class="flag max-w-11/12 mx-auto mb-8">
+        <img class="mx-auto" src={country[0].flags.svg} alt={country[0].name.common}>
       </div>
-      <div class="infos">
+      <div class="infos max-w-11/12 mx-auto">
         <div class="column mb-8 lg:mb-0">
-          <p class="mb-3">
-              <span class="font-bold">Native Name: </span>
-              {country[0].name.official}
-          </p>
-          <p class="mb-3">
-              <span class="font-bold">Population: </span>
+          <div class="mb-3 flex justify-between">
+              <span class="font-bold">Official Name: </span>
+              <span>{country[0].name.official}</span>
+          </div>
+          <div class="mb-3 flex justify-between">
+              <span class="font-bold pr-5">Population: </span>
               {country[0].population}
-          </p>
-          <p class="mb-3">
+          </div>
+          <div class="mb-3 flex justify-between">
               <span class="font-bold">Region: </span>
               {country[0].region}
-          </p>
-          <p class="mb-3">
+          </div>
+          <div class="mb-3 flex justify-between">
               <span class="font-bold">Subregion: </span>
               {country[0].subregion}
-          </p>
-          <p class="mb-3">
+          </div>
+          <div class="mb-3 flex justify-between">
               <span class="font-bold">Capital: </span>
               {country[0].capital}
-          </p>
+          </div>
       </div>
       </div>
     </div>
   {/if}
-</main>
 
 <style>
-  main {
-      max-width: 90%;
-      margin: 0 auto;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  h1 {
-    text-align: center;
-    margin: 2rem;
-  }
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
   .flag {
     width: 700px;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-  img {
-    width: 90%;
   }
   .infos {
     width: 500px;
